@@ -1,0 +1,196 @@
+:root {
+    --background-color: #f0f8ff;
+    --text-color: #000;
+    --card-background-color: #eee;
+    --flipped-card-background-color: #fff;
+    --matched-card-background-color: #a8e6cf;
+
+    /* Botón */
+    --btn-background-color: #4caf50;
+    --btn-hover-color: #45a049;
+    --btn-text-color: #fff;
+    --btn-hover-scale: 1.05;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Tema oscuro */
+body.dark-mode {
+    --background-color: #2e2e2e;
+    --text-color: #fff;
+    --card-background-color: #555;
+    --flipped-card-background-color: #333;
+    --matched-card-background-color: #4caf50;
+
+    /* Botón */
+    --btn-background-color: #3e8e41;
+    --btn-hover-color: #366636;
+}
+
+/* Contendor del juego */
+.game-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.game-info {
+    margin-bottom: 10px;
+}
+
+/* Tablero */
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px); /* Cuatro columnas para escritorio */
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Cartas */
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: var(--card-background-color);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:focus {
+    outline: 2px solid var(--btn-background-color); /* Añadir enfoque visible */
+}
+
+.card.matched {
+    background-color: var(--matched-card-background-color);
+    cursor: default; /* No clickeables */
+}
+
+/* Botón */
+#start-btn,
+#restart-btn,
+#theme-toggle {
+    background-color: var(--btn-background-color);
+    color: var(--btn-text-color);
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#start-btn:hover,
+#restart-btn:hover,
+#theme-toggle:hover  {
+    background-color: var(--btn-hover-color);
+    transform: scale(var(--btn-hover-scale));
+}
+
+/* Mensaje para reiniciar el juego */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.end-game-message {
+    text-align: center;
+    background: #333;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* Animación de cartas */
+@keyframes flip {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(180deg);
+    }
+}
+
+.card.flipped {
+    background-color: var(--flipped-card-background-color);
+    color: var(--text-color);
+    transform: rotateY(180deg);
+    animation: flip 0.6s ease-in-out;
+}
+
+/* Media Queries para responsividad */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .board {
+        grid-template-columns: repeat(2, 80px); /* Dos columnas */
+    }
+
+    .card {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5rem; /* Reducir tamaño de fuente */
+    }
+
+    .game-container {
+        padding: 10px; /* Reducir relleno en móviles */
+    }
+
+    #start-btn,
+    #restart-btn,
+    #theme-toggle {
+        padding: 10px 20px; /* Reducir tamaño de botones */
+        font-size: 14px;
+    }
+
+    .end-game-message {
+        padding: 15px;
+        font-size: 16px; /* Reducir tamaño de fuente */
+    }
+}
+
+/* Pantallas medianas (tabletas) */
+@media (max-width: 900px) {
+    .board {
+        grid-template-columns: repeat(3, 90px); /* Tres columnas */
+    }
+
+    .card {
+        width: 90px;
+        height: 90px;
+        font-size: 1.8rem; /* Ajustar tamaño de fuente */
+    }
+
+    .end-game-message {
+        padding: 18px;
+        font-size: 17px;
+    }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Juego de Memoria: Empareja los Emojis</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="game-container">
+        <button id="theme-toggle" type="button" aria-label="Cambiar entre tema claro y oscuro">
+            Cambiar Tema
+        </button>
+
+        <div class="game-info" aria-live="polite">
+            <p>Parejas Completas: <span id="completed-pairs">0</span></p>
+            <p>Parejas Restantes: <span id="remaining-pairs">8</span></p>
+            <p>Tiempo: <span id="timer">00:00</span></p>
+        </div>
+
+        <div class="board" id="board"></div>
+
+        <button id="start-btn" type="button" aria-label="Iniciar el juego">Iniciar</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
